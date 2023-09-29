@@ -1,0 +1,17 @@
+.Controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .625rem;
+}
+.AgregarCarrito{
+    display: flex;
+    justify-content: center;
+}
+.Number{
+    font-size: large;    
+}
+button{
+    background-color: aqua;
+    font-size: large;
+}

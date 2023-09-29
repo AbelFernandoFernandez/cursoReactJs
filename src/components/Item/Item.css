@@ -1,0 +1,15 @@
+.CardItem{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: aquamarine;
+}
+
+.ItemFooter{
+    text-align: center;
+    border-style: solid;
+    border-radius: 5px;
+    font-size:x-large;
+    background-color: aqua;
+}
