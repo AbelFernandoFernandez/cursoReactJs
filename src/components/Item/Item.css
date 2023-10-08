@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: flex-start;
     background-color: aquamarine;
+    width:max-content;
 }
 
 .ItemFooter{

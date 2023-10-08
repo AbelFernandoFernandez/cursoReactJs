@@ -1,7 +1,6 @@
-import "./Item.css";
-import { Link } from "react-router-dom";
+import "./CartItem.css";
 
-const Item = ({ id, name, price, img, stock, category, descripcion }) => {
+const CartItem = ({ name, price, img }) => {
   return (
     <article className="CardItem">
       <header className="Header">
@@ -18,12 +17,11 @@ const Item = ({ id, name, price, img, stock, category, descripcion }) => {
       </picture>
       <section>
         <p className="Info">precio: ${price}</p>
-        <p className="Info">Stock disponible: {stock}</p>
       </section>
-      <footer className="ItemFooter">
-        <Link to={`/item/${id}`}>Detalle</Link>
-      </footer>
+      {/* <footer className="ItemFooter">
+          <Link to={`/item/${id}`}>Detalle</Link>
+        </footer> */}
     </article>
   );
 };
-export default Item;
+export default CartItem;

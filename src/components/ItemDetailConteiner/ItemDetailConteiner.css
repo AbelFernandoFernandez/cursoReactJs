@@ -1,3 +1,5 @@
-/* .ItemDetailConteiner{
-    background-color: aquamarine;
-} */
+.ItemDetailConteiner{
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+}
