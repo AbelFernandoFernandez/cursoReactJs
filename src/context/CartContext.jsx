@@ -1,33 +1,57 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-export const CartContext = createContext({
-  cart: []
-})
 
-export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([])
+export const CartContext = createContext();
 
-  console.log(cart)
+const carritoInicial = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  const addItem = (item, quantity) => {
-    if (!isInCart(item.id)) {
-      setCart(prev => [...prev, { ...item, quantity }])
-    } else {
-      console.error("El articulo ya fue agregado")
+export const CartProvider = ({children}) => {
+
+    const [carrito, setCarrito] = useState(carritoInicial);
+
+    const agregarAlCarrito = (item, cantidad) => {
+        const itemAgregado = { ...item, cantidad };
+
+        const nuevoCarrito = [...carrito];
+        const estaEnElCarrito = nuevoCarrito.find((productos) => productos.id === itemAgregado.id);
+
+        if (estaEnElCarrito) {
+            estaEnElCarrito.cantidad += cantidad;
+        } else {
+            nuevoCarrito.push(itemAgregado);
+        }
+        setCarrito(nuevoCarrito);
     }
-  }
 
-  const removeItem = (itemId) => {
-    const cartUpdate = cart.filter(prod => prod.id !== itemId)
-    setCart(cartUpdate)
-  }
-  const clearCart = () => {
-    setCart([])
-  }
-  const isInCart = (itemId) => {
-    return cart.some(prod => prod.id === itemId)
-  }
+    const cantidadEnCarrito = () => {
+        return carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+    }
 
-  return (
-    <CartContext.Provider value={{ cart, addItem, removeItem, clearCart }}>{children}</CartContext.Provider>)
+    const precioTotal = () => {
+        return carrito.reduce((acc, prod) => acc + prod.price * prod.cantidad, 0);
+    }
+
+    const vaciarCarrito = () => {
+        setCarrito([]);
+    }
+
+    useEffect(() => {
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+    }, [carrito])
+    
+
+    return (
+        <CartContext.Provider value={ {
+            carrito,
+            agregarAlCarrito,
+            cantidadEnCarrito,
+            precioTotal,
+            vaciarCarrito
+        } }>
+            {children}
+        </CartContext.Provider>
+    )
+
+
+
 }
