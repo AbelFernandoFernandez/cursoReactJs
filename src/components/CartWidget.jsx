@@ -5,13 +5,12 @@ import { CartContext } from '../context/CartContext';
 
 const CartWidget = () => {
 
-    const { cantidadEnCarrito } = useContext(CartContext);
+  const { cantidadEnCarrito } = useContext(CartContext);
 
   return (
     <div>
-      {/* <Link to="/carrito"><img className="CartImg" src={cart} alt="cart-widget" height={50}></img> <span>{cantidadEnCarrito()}</span></Link> */}
-        <Link className="menu-link" to="/carrito"><img className="CartImg" src={cart} alt="cart-widget" height={50}></img><span className="numerito">{cantidadEnCarrito()}</span>
-        </Link>
+      <Link className="menu-link" to="/carrito"><img className="CartImg" src={cart} alt="cart-widget" height={50}></img><span className="numerito">{cantidadEnCarrito()}</span>
+      </Link>
     </div>
   )
 }
